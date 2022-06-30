@@ -13,4 +13,9 @@
                 throw new ArgumentNullException(value.GetType().Name);
         }
     }
+
+    public static int ToInt(this string value)
+        => Convert.ToInt32(value);
+    public static double ToDouble(this string value)
+        => Convert.ToDouble(value);
 }

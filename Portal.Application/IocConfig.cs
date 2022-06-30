@@ -5,7 +5,7 @@ public static class IocConfig
 {
     public static void AddJwtSettings(this IServiceCollection services)
     {
-        services.AddTransient<IJwtSettings,JwtSettings>(opts =>
+        services.AddScoped<IJwtSettings,JwtSettings>(opts =>
         {
             var conf = opts.GetService<IConfiguration>();
             string accessToken = conf.GetSection("JwtSettings:AccessTokenSecret").Value;

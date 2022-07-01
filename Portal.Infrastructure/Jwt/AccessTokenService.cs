@@ -1,4 +1,6 @@
-﻿namespace Portal.Infrastructure.Jwt;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+
+namespace Portal.Infrastructure.Jwt;
 
 public class AccessTokenService : IAccessTokenService
 {
@@ -12,9 +14,9 @@ public class AccessTokenService : IAccessTokenService
     {
         List<Claim> claims = new()
         {
-            new Claim("id", user.Id.ToString()),
-            new Claim(ClaimTypes.Email, user.Email),
-            new Claim(ClaimTypes.Name, $"{user.FirstName} {user.LastName}"),
+            new Claim(JwtRegisteredClaimNames.NameId, user.Id.ToString()),
+            new Claim(JwtRegisteredClaimNames.Email, user.Email),
+            new Claim(JwtRegisteredClaimNames.Name, $"{user.FirstName} {user.LastName}"),
         };
         return _tokenGenerator.Generate(_jwtSettings.AccessTokenSecret, _jwtSettings.Issuer, _jwtSettings.Audience,
             _jwtSettings.AccessTokenExpirationMinutes, claims);

@@ -1,6 +1,6 @@
 ﻿public class User
 {
-    private User()
+    public User()
     {
         Id = Guid.NewGuid();
     }
@@ -18,12 +18,14 @@
         Role = Role.User;
     }
 
-    public Guid Id { get; private set; }
-    public string FirstName { get; private set; }
-    public string LastName { get; private set; }
-    public string Email { get; private set; }
-    public string PasswordHash { get; private set; }
-    public Role Role { get; private set; }
+    public Guid Id { get; set; }
+    public string FirstName { get; set; }
+    public string LastName { get; set; }
+    public string Email { get; set; }
+    public string PasswordHash { get; set; }
+    public Role Role { get; set; }
+
+    public ICollection<RefreshToken> RefreshTokens { get; set; }
 }
 
 public enum Role : byte

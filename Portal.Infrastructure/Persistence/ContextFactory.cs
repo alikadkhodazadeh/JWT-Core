@@ -14,7 +14,7 @@ public class ContextFactory : IContextFactory<Context>
     public Context CreateDbContext(string[] args)
     {
         var options = new DbContextOptionsBuilder<Context>()
-            .UseSqlite(_configuration.GetConnectionString("Context"))
+            .UseSqlite("Data Source=app.db")
             .Options;
         return new Context(options);
     }

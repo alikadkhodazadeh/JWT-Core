@@ -3,6 +3,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Portal.Infrastructure.Jwt;
 using Portal.Infrastructure.Persistence;
 using System.Text;
 
@@ -19,6 +20,12 @@ public static class IocConfig
 
     public static void AddJwt(this IServiceCollection services)
     {
+        services.AddScoped<ITokenGenerator, TokenGenerator>();
+        services.AddScoped<IAccessTokenService, AccessTokenService>();
+        services.AddScoped<IRefreshTokenService, RefreshTokenService>();
+        services.AddScoped<IRefreshTokenValidator, RefreshTokenValidator>();
+        services.AddScoped<IAuthenticateService, AuthenticateService>();
+
         services.AddAuthentication(opts =>
         {
             opts.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;

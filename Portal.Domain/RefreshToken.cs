@@ -1,12 +1,18 @@
 ﻿
 public class RefreshToken
 {
-    public RefreshToken(Guid id, string refreshToken)
+    public RefreshToken()
     {
-        Id = id;
-        Value = refreshToken;
+
+    }
+    public RefreshToken(Guid userId, string refreshToken)
+    {
+        UserId = userId;
+        Token = refreshToken;
     }
 
-    public Guid Id { get; set; }
-    public string Value { get; set; }
+    public Guid UserId { get; set; }
+    public string Token { get; set; }
+
+    public User User { get; set; }
 }
